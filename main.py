@@ -1,5 +1,5 @@
 import gym
-from stable_baselines3 import PPO
+from stable_baselines3 import A2C
 from pathlib import Path
 
 # create a folder to save the model
@@ -19,12 +19,12 @@ log_path.mkdir(parents=True, exist_ok=True)
 env = gym.make('LunarLander-v2')
 env.reset()
 
-model = PPO('MlpPolicy', env, verbose=1,tensorboard_log=str(log_path))
+model = A2C('MlpPolicy', env, verbose=1,tensorboard_log=str(log_path))
 
 TIMESTEPS = 20000
 for i in range(1,30):
-    model.learn(total_timesteps=TIMESTEPS,reset_num_timesteps=False,tb_log_name=f'PPO_{i}')
-    model.save(str(PPO_model_path / f'PPO_{TIMESTEPS * i}'))
+    model.learn(total_timesteps=TIMESTEPS,reset_num_timesteps=False,tb_log_name=f'A2C_{i}')
+    model.save(str(A2C_model_path / f'A2C_{TIMESTEPS * i}'))
 
 # run for 1000 steps which is about 10 seconds
 '''N_EPISODES = 10
