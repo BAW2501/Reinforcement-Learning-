@@ -1,14 +1,12 @@
 import gym
 
 
-env = gym.make('LunarLander-v2')
+env = gym.make('LunarLander-v2',render_mode='rgb_array')
 
 env.reset()
 
-print(env.action_space.sample())
-
-print(env.observation_space.shape)
-print(env.observation_space.sample())
-
+for _ in range(1000):
+    env.render()
+    env.step(env.action_space.sample())
 
 env.close()
