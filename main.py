@@ -19,9 +19,9 @@ log_path.mkdir(parents=True, exist_ok=True)
 env = gym.make('LunarLander-v2')
 env.reset()
 
-model = PPO('MlpPolicy', env, verbose=1)
+model = PPO('MlpPolicy', env, verbose=1,tensorboard_log=str(log_path))
 
-TIMESTEPS = 100000
+TIMESTEPS = 20000
 for i in range(1,30):
     model.learn(total_timesteps=TIMESTEPS,reset_num_timesteps=False,tb_log_name=f'PPO_{i}')
     model.save(str(PPO_model_path / f'PPO_{TIMESTEPS * i}'))
